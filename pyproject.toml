@@ -1,0 +1,23 @@
+[project]
+name = "justcall-readonly"
+version = "0.1.0"
+description = "GET-only MCP skill for JustCall — exposes calls, recordings, and transcripts to OpenClaw agents without granting write access."
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27",
+    "mcp>=1.0",
+]
+license = { text = "MIT" }
+
+[project.scripts]
+justcall-readonly = "justcall_readonly.server:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-mock>=3"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/justcall_readonly"]

@@ -1,0 +1,23 @@
+{
+  "name": "justcall-readonly",
+  "version": "0.1.0",
+  "description": "GET-only JustCall bridge. Exposes list_calls, get_call, get_recording, get_transcript to the agent. Destructive verbs cannot be invoked because no such tool is registered.",
+  "entrypoint": {
+    "command": "python",
+    "args": ["-m", "justcall_readonly.server"]
+  },
+  "env": {
+    "required": ["JUSTCALL_API_KEY", "JUSTCALL_API_SECRET"],
+    "optional": [
+      "JUSTCALL_BASE_URL",
+      "JUSTCALL_AUDIT_DB",
+      "JUSTCALL_RATE_LIMIT_PER_MIN"
+    ]
+  },
+  "tools": [
+    { "name": "list_calls",     "method": "GET", "path": "/calls" },
+    { "name": "get_call",       "method": "GET", "path": "/calls/{id}" },
+    { "name": "get_recording",  "method": "GET", "path": "/calls/{id}/recording" },
+    { "name": "get_transcript", "method": "GET", "path": "/calls/{id}/transcript" }
+  ]
+}
